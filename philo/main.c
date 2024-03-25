@@ -6,13 +6,13 @@
 /*   By: antferna <antferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 12:23:39 by antferna          #+#    #+#             */
-/*   Updated: 2024/03/20 12:33:36 by antferna         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:03:29 by antferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static	void	init_forks_philos(t_data *data, char **argv)
+static	void	init_forks_philos(t_data *data, t_philo *philos, char **argv)
 {
 	int	i;
 
@@ -22,23 +22,24 @@ static	void	init_forks_philos(t_data *data, char **argv)
 	i = -1;
 	while (++i < data->num_of_philos)
 	{
-		data->philos[i].id = i + 1;
-		data->philos[i].eating = 0;
-		data->philos[i].meals_eaten = 0;
-		data->philos[i].last_meal = get_current_time();
-		data->philos[i].time_to_die = ft_atol(argv[2]);
-		data->philos[i].time_to_eat = ft_atol(argv[3]);
-		data->philos[i].time_to_sleep = ft_atol(argv[4]);
-		data->philos[i].start_time = get_current_time();
-		data->philos[i].l_fork = &data->forks[i];
+		philos[i].id = i + 1;
+		philos[i].eating = 0;
+		philos[i].meals_eaten = 0;
+		philos[i].last_meal = get_current_time();
+		philos[i].time_to_die = ft_atol(argv[2]);
+		philos[i].time_to_eat = ft_atol(argv[3]);
+		philos[i].time_to_sleep = ft_atol(argv[4]);
+		philos[i].start_time = get_current_time();
+		philos[i].l_fork = &data->forks[i];
 		if (i == 0)
-			data->philos[i].r_fork = &data->forks[data->num_of_philos - 1];
+			philos[i].r_fork = &data->forks[data->num_of_philos - 1];
 		else
-			data->philos[i].r_fork = &data->forks[i - 1];
+			philos[i].r_fork = &data->forks[i - 1];
+		philos[i].data = data;
 	}
 }
 
-static void	init_program(t_data *data, char **argv, int argc)
+static void	init_program(t_data *data, t_philo *philos, char **argv, int argc)
 {
 	data->i = 0;
 	data->dead_flag = 0;
@@ -49,15 +50,16 @@ static void	init_program(t_data *data, char **argv, int argc)
 	pthread_mutex_init(&data->write_lock, NULL);
 	pthread_mutex_init(&data->dead_lock, NULL);
 	pthread_mutex_init(&data->meal_lock, NULL);
-	init_forks_philos(data, argv);
+	init_forks_philos(data, philos, argv);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data				data;
+	t_philo				philos[PHIL_MAX];
 
 	if (!check_args(argv) || argc < 5 || argc > 6)
 		return (printf("Invalid Arguments\n"), 1);
-	init_program(&data, argv, argc);
-	start_threads(&data);
+	init_program(&data, philos, argv, argc);
+	start_threads(philos);
 }

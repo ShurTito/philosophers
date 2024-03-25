@@ -6,7 +6,7 @@
 /*   By: antferna <antferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 12:24:43 by antferna          #+#    #+#             */
-/*   Updated: 2024/03/20 12:34:39 by antferna         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:51:52 by antferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,16 @@ int	check_args(char **arg)
 				return (0);
 	}
 	return (1);
+}
+
+void	destroy_mutex(t_philo *p)
+{
+	int	i;
+
+	i = -1;
+	pthread_mutex_destroy(&p->data->write_lock);
+	pthread_mutex_destroy(&p->data->meal_lock);
+	pthread_mutex_destroy(&p->data->dead_lock);
+	while (++i < p->data->num_of_philos)
+		pthread_mutex_destroy(&p->data->forks[i]);
 }

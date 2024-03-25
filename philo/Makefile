@@ -8,7 +8,7 @@ LIB_PROJECT = philo.a
 
 LIB = ar rcs
 
-SRCS =  main.c utils.c routines.c threads.c
+SRCS =  main.c utils.c routines.c threads.c monitoring.c 
 
 OBJS = $(SRCS:.c=.o)
 
