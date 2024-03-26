@@ -14,7 +14,7 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME) :	$(OBJS) 
 			$(LIB) $(LIB_PROJECT) $(OBJS)
-			$(CC) $(CFLAGS) $(LIB_PROJECT) -o $(NAME)
+			$(CC) $(CFLAGS) -fsanitize=thread $(LIB_PROJECT) -o $(NAME)
 
 $(OBJS):	%.o : %.c 
 			$(CC) $(CFLAGS) -c $< -o $@

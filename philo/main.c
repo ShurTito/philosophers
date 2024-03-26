@@ -6,7 +6,7 @@
 /*   By: antferna <antferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 12:23:39 by antferna          #+#    #+#             */
-/*   Updated: 2024/03/25 15:03:29 by antferna         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:06:04 by antferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ int	main(int argc, char **argv)
 		return (printf("Invalid Arguments\n"), 1);
 	init_program(&data, philos, argv, argc);
 	start_threads(philos);
+	destroy_mutex(philos);
 }
