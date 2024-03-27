@@ -6,7 +6,7 @@
 /*   By: antferna <antferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:06:42 by antferna          #+#    #+#             */
-/*   Updated: 2024/03/25 16:50:38 by antferna         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:36:22 by antferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	dead_check(t_philo *p)
 	{
 		if (philo_dead(&p[i], p[i].time_to_die, p))
 		{
-			philo_msg("has died", p);
+			philo_msg("died", p);
 			pthread_mutex_lock(&p->data->dead_lock);
 			p->data->dead_flag = 1;
 			pthread_mutex_unlock(&p->data->dead_lock);
