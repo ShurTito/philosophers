@@ -6,7 +6,7 @@
 /*   By: antferna <antferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 12:21:14 by antferna          #+#    #+#             */
-/*   Updated: 2024/03/27 12:36:30 by antferna         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:47:24 by antferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	int				eating;
 	int				meals_eaten;
 	size_t			last_meal;
 	size_t			time_to_die;

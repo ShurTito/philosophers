@@ -6,7 +6,7 @@
 /*   By: antferna <antferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:06:42 by antferna          #+#    #+#             */
-/*   Updated: 2024/03/27 12:36:22 by antferna         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:47:41 by antferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	feed_all_check(t_philo *p)
 int	philo_dead(t_philo *philo, size_t time_to_die, t_philo *p)
 {
 	pthread_mutex_lock(&p->data->meal_lock);
-	if (get_current_time() - philo->last_meal >= time_to_die
-		&& philo->eating == 0)
+	if (get_current_time() - philo->last_meal >= time_to_die)
 		return (pthread_mutex_unlock(&p->data->meal_lock), 1);
 	pthread_mutex_unlock(&p->data->meal_lock);
 	return (0);

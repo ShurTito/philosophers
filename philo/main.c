@@ -6,7 +6,7 @@
 /*   By: antferna <antferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 12:23:39 by antferna          #+#    #+#             */
-/*   Updated: 2024/03/27 12:36:16 by antferna         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:47:48 by antferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static	void	init_forks_philos(t_data *data, t_philo *philos, char **argv)
 	while (++i < data->num_of_philos)
 	{
 		philos[i].id = i + 1;
-		philos[i].eating = 0;
 		philos[i].meals_eaten = 0;
 		philos[i].last_meal = get_current_time();
 		philos[i].time_to_die = ft_atol(argv[2]);
